@@ -1,0 +1,10 @@
+<ul>
+  <% @galleries.each do |name, photo| %>
+    <li> <a href="/galleries/<%= name %>"><%= name %> </a></li>
+  <% end %>
+</ul>
+
+
+<%# don't put spaces around = in a <a href>
+  use %= where normally use puts
+do not use ruby interpolation, is security issue%>
