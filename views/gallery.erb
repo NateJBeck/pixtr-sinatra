@@ -1,9 +1,5 @@
 <h2> Viewing the <%= @name %> Gallery </h2>
 
 <% @images.each do |image| %>
-  <img src="/<%= image %>"/>
-a<% end %>
-
-
-
-<%# use the HTML tag <img src> then interpolate the image as a string src %>
+   <img src="<%= image.url %>"/>
+<% end %>
