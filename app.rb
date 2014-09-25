@@ -45,6 +45,14 @@ patch "/galleries/:id" do
   redirect to("/galleries/#{id}")
 end
 
+delete "/galleries/:id" do
+  id = params[:id]
+  gallery = Gallery.find(id)
+  gallery.destroy
+  
+  redirect to("/")
+end
+
 get "/galleries/:id" do   
   id = params[:id]   #setting id to parameter input in URL   galleries/1   id = 1
 
