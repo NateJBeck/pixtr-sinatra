@@ -12,6 +12,14 @@
   <input type="submit" value="Delete Gallery" />
 </form>
 
-<% @images.each do |image| %>
-   <img src="<%= image.url %>"/>
+<% @gallery.images.each do |image| %>
+  <img src="<%= image.url %>"/>
+
+  <form action="/galleries/<%= @gallery.id %>/images/<%= image.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE" />
+    <input type="submit" value="Delete Image" />
+
+    <br/> 
+  </form>
+
 <% end %>

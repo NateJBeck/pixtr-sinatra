@@ -56,10 +56,8 @@ end
 
 get "/galleries/:id" do   
   id = params[:id]   #setting id to parameter input in URL   galleries/1   id = 1
-
   @gallery = Gallery.find(id) #finds gallery based on ID, creates ojbect array
-  @images = Image.where(gallery_id: id)   # use with second part in gallery
-
+  #@images = Image.where(gallery_id: id)   # use with second part in gallery
   erb :gallery
 end
 
@@ -73,6 +71,29 @@ post "/galleries/:id/images" do
   gallery.images.create(params[:image])
 
   redirect to("galleries/#{gallery.id}")
+end
+
+get "/galleries/:id/images/:image_id/edit" do
+  @gallery = Gallery.find(params[:id])
+  erb :edit_image
+end
+
+
+
+
+
+delete "/galleries/:id/images/:image_id" do
+  id=params[:id]
+  image_id=params[:image_id]
+ 
+  image = Image.find(image_id)
+  image.destroy
+
+  redirect to("galleries/#{id}")
+end
+
+patch "/galleries/:id/images/:image_id" do
+
 end
 
 #THESE ARE CLASS NOTES---------------------------------------
