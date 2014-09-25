@@ -32,14 +32,25 @@ post "/galleries" do   #our form method on galleries/new is POST
   redirect to("/")
 end
 
+get "/galleries/:id/edit" do
+  @gallery = Gallery.find(params[:id])
+  erb :edit_gallery
+end
+
+patch "/galleries/:id" do
+  id = params[:id]
+  gallery = Gallery.find(id)
+  gallery.update(params[:gallery])
+
+  redirect to("/galleries/#{id}")
+end
+
 get "/galleries/:id" do   
   id = params[:id]   #setting id to parameter input in URL   galleries/1   id = 1
-  
-  gallery = Gallery.find(id) #finds gallery based on ID, creates ojbect array
- 
-  @name = gallery.name
+
+  @gallery = Gallery.find(id) #finds gallery based on ID, creates ojbect array
   @images = Image.where(gallery_id: id)   # use with second part in gallery
- 
+
   erb :gallery
 end
 

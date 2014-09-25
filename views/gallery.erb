@@ -1,4 +1,6 @@
-<h2> Viewing the <%= @name %> Gallery </h2>
+<h2> Viewing the <%= @gallery.name %> Gallery </h2>
+
+<a href="/galleries/<%= @gallery.id %>/edit">Edit Your Gallery Name</a>
 
 <% @images.each do |image| %>
    <img src="<%= image.url %>"/>
