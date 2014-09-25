@@ -2,6 +2,11 @@
 
 <a href="/galleries/<%= @gallery.id %>/edit">Edit Your Gallery Name</a>
 
+<form action="/galleries/<%= @gallery.id %>/images/new" method="POST">
+  <input type="submit" value="Add a New Image" />
+</form>
+
+
 <form action="/galleries/<%= @gallery.id %>" method="POST">
   <input type="hidden" name="_method" value="DELETE" />
   <input type="submit" value="Delete Gallery" />

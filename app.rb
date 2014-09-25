@@ -11,6 +11,7 @@ ActiveRecord::Base.establish_connection(
 )
 
 class Gallery < ActiveRecord::Base
+  has_many :images
 end
 
 class Image < ActiveRecord::Base
@@ -60,6 +61,18 @@ get "/galleries/:id" do
   @images = Image.where(gallery_id: id)   # use with second part in gallery
 
   erb :gallery
+end
+
+post "/galleries/:id/images/new" do
+  @gallery = Gallery.find(params[:id])
+  erb :new_image
+end
+
+post "/galleries/:id/images" do
+  gallery = Gallery.find(params[:id])
+  gallery.images.create(params[:image])
+
+  redirect to("galleries/#{gallery.id}")
 end
 
 #THESE ARE CLASS NOTES---------------------------------------
